@@ -1,0 +1,27 @@
+[package]
+name = "il2cpp_asi_template"
+version = "0.1.0"
+edition = "2024"
+
+[lib]
+# An ASI plugin is loaded by the game, so it has to be a DLL.
+crate-type = ["cdylib"]
+
+[dependencies]
+anyhow = "1.0.104"
+hudhook = "0.9.3"
+il2cpp-bridge-rs = "0.1.4"
+
+[dependencies.windows]
+version = ">=0.59, <=0.62"
+features = [
+    "Win32_Foundation",
+    "Win32_System",
+    "Win32_System_LibraryLoader",
+    "Win32_System_Threading"
+]
+
+[profile.release]
+opt-level = 2
+lto = true
+strip = "symbols"
